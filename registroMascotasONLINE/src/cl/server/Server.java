@@ -4,7 +4,6 @@ import cl.cliente.Mascota;
 import cl.server.model.Registro;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import javax.swing.JTable;
@@ -19,7 +18,7 @@ public class Server {
     public static void main(String[] args) throws ClassNotFoundException, InterruptedException, IOException {
 
         Registro rg = new Registro();
-        JTable tblRegistro = rg.getTabla();
+        JTable tblRegistro = rg.getTablaRegistros();
         rg.setTitle("Registro de Mascotas");
         rg.setLocationRelativeTo(null);
         rg.setVisible(true);
@@ -32,14 +31,12 @@ public class Server {
         System.out.println("Server corriendo en puerto " + 5000);//cuando se conecta el server, queda esperando un cliente que se conecte.
 
         Socket cliente;
-        ObjectOutputStream output = null;
-        ObjectInputStream input = null;
+        ObjectInputStream input;
         
         
         while (true) {
             cliente = server.accept(); //queda esperando el ingreso de un cliente
             
-            output = new ObjectOutputStream(cliente.getOutputStream()); //se usará para leer OBJETOS SALIENTES
             input = new ObjectInputStream(cliente.getInputStream()); //se usará para leer OBJETOS ENTRANTES
             
             
@@ -54,24 +51,18 @@ public class Server {
                     String.valueOf(m.getIdrun()),
                     String.valueOf(m.getRaza()),
                     String.valueOf(m.getTamanio()),
+                    String.valueOf(m.getSexo()),
                     String.valueOf(m.getNombreDuenio()),
                     String.valueOf(m.getRutDuenio()),
                     String.valueOf(m.getDireccion())};
                 
                 tabla.addRow(datos);
-                if(m.getNombre().equalsIgnoreCase("cerrar")){
-                break;
-            }
                 
             }
             
         }
 
-        input.close();
-
-        output.close();
-
-        server.close();
+        
 
     }
 

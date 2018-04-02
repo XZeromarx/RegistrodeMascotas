@@ -23,19 +23,19 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane2" pref="980" max="32767" attributes="0"/>
+              <Component id="jScrollPane2" pref="860" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="127" max="32767" attributes="0"/>
-              <Component id="jScrollPane2" min="-2" pref="462" max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane2" min="-2" pref="374" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -51,12 +51,13 @@
         <Component class="javax.swing.JTable" name="tblRegistroMascota">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="7" rowCount="0">
+              <Table columnCount="8" rowCount="0">
                 <Column editable="false" title="Nombre Mascota" type="java.lang.String"/>
                 <Column editable="false" title="Edad" type="java.lang.String"/>
                 <Column editable="false" title="ID/RUT" type="java.lang.String"/>
-                <Column editable="false" title="Sexo" type="java.lang.String"/>
+                <Column editable="false" title="Raza" type="java.lang.String"/>
                 <Column editable="false" title="Tama&#xf1;o" type="java.lang.String"/>
+                <Column editable="false" title="Sexo" type="java.lang.String"/>
                 <Column editable="false" title="Nombre de Due&#xf1;o" type="java.lang.String"/>
                 <Column editable="false" title="RUT Due&#xf1;o" type="java.lang.String"/>
               </Table>
@@ -69,6 +70,11 @@
                   <Renderer/>
                 </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="5" resizable="false">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="10" resizable="false">
                   <Title/>
                   <Editor/>
                   <Renderer/>
@@ -101,7 +107,7 @@
               </TableColumnModel>
             </Property>
             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+              <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
             </Property>
           </Properties>
         </Component>

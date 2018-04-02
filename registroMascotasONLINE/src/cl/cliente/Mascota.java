@@ -16,19 +16,9 @@ public class Mascota  implements Serializable{
     private String nombreDuenio;
     private String rutDuenio;
     private String direccion;
+    private String sexo;
 
     public Mascota() {
-    }
-
-    public Mascota(String nombre, int edad, String idrun, String raza, String tamanio, String nombreDuenio, String rutDuenio, String direccion) {
-        this.nombre = nombre;
-        this.edad = edad;
-        this.idrun = idrun;
-        this.raza = raza;
-        this.tamanio = tamanio;
-        this.nombreDuenio = nombreDuenio;
-        this.rutDuenio = rutDuenio;
-        this.direccion = direccion;
     }
 
     public String getNombre() {
@@ -94,6 +84,16 @@ public class Mascota  implements Serializable{
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    
 
     
     

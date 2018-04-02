@@ -8,10 +8,10 @@ public class Registro extends javax.swing.JFrame {
     public Registro() {
         initComponents();
     }
-    public JTable getTabla(){
+    
+    public JTable getTablaRegistros(){
         return tblRegistroMascota;
     }
-    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -27,14 +27,14 @@ public class Registro extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nombre Mascota", "Edad", "ID/RUT", "Sexo", "Tamaño", "Nombre de Dueño", "RUT Dueño"
+                "Nombre Mascota", "Edad", "ID/RUT", "Raza", "Tamaño", "Sexo", "Nombre de Dueño", "RUT Dueño"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -45,6 +45,7 @@ public class Registro extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblRegistroMascota.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(tblRegistroMascota);
         if (tblRegistroMascota.getColumnModel().getColumnCount() > 0) {
             tblRegistroMascota.getColumnModel().getColumn(0).setResizable(false);
@@ -58,26 +59,28 @@ public class Registro extends javax.swing.JFrame {
             tblRegistroMascota.getColumnModel().getColumn(4).setResizable(false);
             tblRegistroMascota.getColumnModel().getColumn(4).setPreferredWidth(10);
             tblRegistroMascota.getColumnModel().getColumn(5).setResizable(false);
-            tblRegistroMascota.getColumnModel().getColumn(5).setPreferredWidth(20);
+            tblRegistroMascota.getColumnModel().getColumn(5).setPreferredWidth(10);
             tblRegistroMascota.getColumnModel().getColumn(6).setResizable(false);
-            tblRegistroMascota.getColumnModel().getColumn(6).setPreferredWidth(10);
+            tblRegistroMascota.getColumnModel().getColumn(6).setPreferredWidth(20);
+            tblRegistroMascota.getColumnModel().getColumn(7).setResizable(false);
+            tblRegistroMascota.getColumnModel().getColumn(7).setPreferredWidth(10);
         }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 980, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 860, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(127, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
