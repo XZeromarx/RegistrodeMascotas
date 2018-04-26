@@ -3,6 +3,8 @@ package cl.cliente;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -273,7 +275,7 @@ public class Formulario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "nombre de mascota esta vacío");
         }
 
-        m.setIdrun(txtIdMascota.getText());
+        m.setRun(txtIdMascota.getText());
 
         if (txtIdMascota.getText().equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(null, "ID/Rut de mascota esta vacío");
@@ -286,12 +288,12 @@ public class Formulario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "raza de mascota esta vacía");
         }
 
-        if(rdMacho.isSelected()){
+        if (rdMacho.isSelected()) {
             m.setSexo("Macho");
-        }else{
+        } else {
             m.setSexo("Hembra");
         }
-        
+
         if (rdPequenio.isSelected()) {
             m.setTamanio("Pequeño");
         } else if (rdMediano.isSelected()) {
@@ -300,41 +302,47 @@ public class Formulario extends javax.swing.JFrame {
             m.setTamanio("Grande");
         }
 
-        m.setNombreDuenio(txtNombreDuenio.getText());
+        Duenio duenio = new Duenio();
+
+        duenio.setNombre(txtNombreDuenio.getText());
         if (txtNombreDuenio.getText().equalsIgnoreCase("")) {
 
             JOptionPane.showMessageDialog(null, "nombre dueño de mascota esta vacío");
         }
-        m.setRutDuenio(txtRutDuenio.getText());
+        duenio.setRut(txtRutDuenio.getText());
         if (txtRutDuenio.getText().equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(null, "rut de dueño de mascota esta vacío");
 
         }
-        m.setDireccion(txtDireccionDuenio.getText());
+        duenio.setDireccion(txtDireccionDuenio.getText());
         if (txtDireccionDuenio.getText().equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(null, "direccion de dueño de mascota esta vacía");
 
         }
 
         if (confirmarEnvio()) {
-            try {
+            if (txtNombreDuenio.getText().trim().equals("") || txtRutDuenio.getText().trim().equals("") || txtIdMascota.getText().trim().equals("")) {
+                JOptionPane.showMessageDialog(null, "Tiene que haber aunque sea un nombre de dueño y su rut");
+            } else {
+                try {
 
-                enviarObjeto(m);
+                    enviarObjetos(m,duenio);
+                    
 
-                txtNombreMascota.setText("");
-                spEdad.setValue(0);
-                txtIdMascota.setText("");
-                txtRaza.setText("");
-                rdMacho.isSelected();
-                rdPequenio.isSelected();
-                txtNombreDuenio.setText("");
-                txtRutDuenio.setText("");
-                txtDireccionDuenio.setText("");
-                txtNombreMascota.setFocusable(true);
-                
+                    txtNombreMascota.setText("");
+                    spEdad.setValue(0);
+                    txtIdMascota.setText("");
+                    txtRaza.setText("");
+                    rdMacho.isSelected();
+                    rdPequenio.isSelected();
+                    txtNombreDuenio.setText("");
+                    txtRutDuenio.setText("");
+                    txtDireccionDuenio.setText("");
+                    txtNombreMascota.setFocusable(true);
 
-            } catch (IOException | ClassNotFoundException ex) {
-                Logger.getLogger(Formulario.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException | ClassNotFoundException ex) {
+                    Logger.getLogger(Formulario.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
 
@@ -403,16 +411,21 @@ public class Formulario extends javax.swing.JFrame {
     private javax.swing.JTextField txtRutDuenio;
     // End of variables declaration//GEN-END:variables
 
-    private void enviarObjeto(Mascota m) throws IOException, ClassNotFoundException {
+    private void enviarObjetos(Object m, Object d) throws IOException, ClassNotFoundException {
 
-        try
-        {        cliente = new Socket("localhost", 5000);
-        }catch(IOException e){
+        try {
+            cliente = new Socket("localhost", 5000);
+        } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "No se ha encontrado servidor");
         }
+        
+        List<Object> objetos = new ArrayList<>();
+        objetos.add(m);
+        objetos.add(d);
+        
         outObj = new ObjectOutputStream(cliente.getOutputStream());
 
-        outObj.writeObject(m);//envía la clase 
+        outObj.writeObject(objetos);//envía la clase 
 
         cliente.close();//se "cierra" la conexión del cliente
 
@@ -420,9 +433,7 @@ public class Formulario extends javax.swing.JFrame {
 
     private boolean confirmarEnvio() {
         boolean confirmacion = false;
-        int conf = JOptionPane.showConfirmDialog(this, "Confirmar envio de formulario?");// 0=true, 1=false, 2=null
-
-        if (conf == 0) {
+        if (JOptionPane.showConfirmDialog(this, "Confirmar envio de formulario?") == JOptionPane.YES_OPTION) {
             confirmacion = true;
         }
 

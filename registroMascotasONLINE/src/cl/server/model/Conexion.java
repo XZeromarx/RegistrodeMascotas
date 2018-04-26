@@ -27,9 +27,10 @@ public class Conexion {
    
     public void ejecutar(String query) throws SQLException{
         System.out.println(query);
-       
         st = con.createStatement();
-        st.executeUpdate(query);
+        System.out.println("por ejecutar query");
+        st.execute(query);
+        System.out.println("query ejecutado");
         close();
     }
    

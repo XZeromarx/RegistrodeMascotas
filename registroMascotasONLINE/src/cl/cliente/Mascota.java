@@ -6,16 +6,13 @@ import java.io.Serializable;
  *
  * @author XZeroMarx
  */
-public class Mascota  implements Serializable{
+public class Mascota implements Serializable {
 
     private String nombre;
     private int edad;
-    private String idrun;
+    private String run;
     private String raza;
     private String tamanio;
-    private String nombreDuenio;
-    private String rutDuenio;
-    private String direccion;
     private String sexo;
 
     public Mascota() {
@@ -37,12 +34,12 @@ public class Mascota  implements Serializable{
         this.edad = edad;
     }
 
-    public String getIdrun() {
-        return idrun;
+    public String getRun() {
+        return run;
     }
 
-    public void setIdrun(String idrun) {
-        this.idrun = idrun;
+    public void setRun(String idrun) {
+        this.run = idrun;
     }
 
     public String getRaza() {
@@ -61,30 +58,6 @@ public class Mascota  implements Serializable{
         this.tamanio = tamanio;
     }
 
-    public String getNombreDuenio() {
-        return nombreDuenio;
-    }
-
-    public void setNombreDuenio(String nombreDuenio) {
-        this.nombreDuenio = nombreDuenio;
-    }
-
-    public String getRutDuenio() {
-        return rutDuenio;
-    }
-
-    public void setRutDuenio(String rutDuenio) {
-        this.rutDuenio = rutDuenio;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
     public String getSexo() {
         return sexo;
     }
@@ -93,14 +66,4 @@ public class Mascota  implements Serializable{
         this.sexo = sexo;
     }
 
-    
-
-    
-    
-
-    
-
-    
-    
-    
 }
