@@ -22,7 +22,6 @@ import java.util.logging.Logger;
  */
 public class ConexionSocketServer extends Thread {
 
-    private Data d;
     private ServerSocket server;
     private Socket cliente;
     private ObjectInputStream input;
@@ -33,7 +32,8 @@ public class ConexionSocketServer extends Thread {
 
     }
 
-    public void asdasd() throws InterruptedException {
+    @Override
+    public void run() {
         try {
             server = new ServerSocket(5000);//se crea el server en el puerto 5000
         } catch (IOException ex) {
@@ -67,10 +67,14 @@ public class ConexionSocketServer extends Thread {
                     //el objeto que llega se castea a Mascota
                     //INSERTA LOS DATOS RESCATADOS DE LA MASCOTA A LA BASE DE DATOS
                     System.out.println("data");
-                    d = new Data();
+
+                    sleep(1000);
+
                     System.out.println("crearMascota y dueño");
-                    
+
+                    Data d = new Data();
                     d.crearMascotaAndDuenio(m, duenio);
+                    join();
 
                 } else {
                     System.out.println("cacacacaccacacacacaca");
@@ -78,6 +82,8 @@ public class ConexionSocketServer extends Thread {
             } catch (IOException iOException) {
             } catch (ClassNotFoundException classNotFoundException) {
             } catch (SQLException sQLException) {
+            } catch (InterruptedException ex) {
+                Logger.getLogger(ConexionSocketServer.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

@@ -14,7 +14,7 @@ public class Registro extends javax.swing.JFrame {
         initComponents();
         System.out.println("conecta a la bd");
         conectar = new ConexionSocketServer();
-        conectar.asdasd();
+        conectar.start();
 
     }
 

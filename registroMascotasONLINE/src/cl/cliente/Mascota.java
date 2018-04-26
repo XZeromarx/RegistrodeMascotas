@@ -66,4 +66,11 @@ public class Mascota implements Serializable {
         this.sexo = sexo;
     }
 
+    @Override
+    public String toString() {
+        return "Mascota{" + "nombre=" + nombre + ", edad=" + edad + ", run=" + run + ", raza=" + raza + ", tamanio=" + tamanio + ", sexo=" + sexo + '}';
+    }
+
+    
+    
 }

@@ -45,4 +45,10 @@ public class Duenio implements Serializable {
         this.direccion = direccion;
     }
 
+    @Override
+    public String toString() {
+        return "Duenio{" + "nombre=" + nombre + ", rut=" + rut + ", direccion=" + direccion + '}';
+    }
+
+    
 }

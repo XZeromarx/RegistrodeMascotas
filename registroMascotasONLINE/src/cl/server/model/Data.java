@@ -22,35 +22,12 @@ public class Data {
     }
 
     public void crearMascotaAndDuenio(Mascota m, Duenio d) throws SQLException, InterruptedException {
-       
+
         System.out.println("insert mascota");
-        query = "INSERT INTO mascota VALUES('" + m.getNombre() + "'," + m.getEdad() + ",'" + m.getRaza() + "','" + m.getRun() + "','" + m.getSexo() + "','" + m.getTamanio() + "')";
+        query = "EXEC crearMascotayDuenio '" + m.getNombre() + "'," + m.getEdad() + ",'" + m.getRaza() + "','" + m.getRun() + "','" + m.getSexo() + "','" + m.getTamanio() + "','" + d.getNombre() + "','" + d.getRut() + "','" + d.getDireccion() + "' ";
         System.out.println("ejecuta insert");
         con.ejecutar(query);
-
-        System.out.println("crea segunda query");
-        query = "SELECT id FROM mascota WHERE rut = '" + m.getRun() + "'";
-        System.out.println("ejecuta segunda query");
-        rs = con.ejecutarSelect(query);
-
-        System.out.println("rescata id");
-        String id = rs.getString(1);
-        System.out.println("function");
-        query = "SELECT dbo.crearDuenio('" + id + "')";
-        System.out.println("ejecuta funcion");
-        rs = con.ejecutarSelect(query);
-
-        System.out.println("if");
-        if (d.getDireccion().trim().equals("")) {
-            System.out.println("insert1");
-            query = "INSERT INTO duenio VALUES ('" + d.getNombre() + "','" + d.getRut() + "',DEFAULT," + rs.getString(1) + ")";
-        } else {
-            System.out.println("insert2");
-            query = "INSERT INTO duenio VALUES ('" + d.getNombre() + "','" + d.getRut() + "','" + d.getDireccion() + "'," + rs.getString(1) + ")";
-        }
-
-        con.ejecutar(query);
-        
+        con.close();
         
     }
 

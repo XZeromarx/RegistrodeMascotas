@@ -1,48 +1,49 @@
 package cl.server.model;
- 
+
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.DriverManager;        
+import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;      
- 
+import java.sql.Statement;
+
 public class Conexion {
+
     private Statement st;
     private ResultSet rs;
-    private Connection con;
-   
-    public Conexion(String server, String bd) throws ClassNotFoundException, SQLException{
+    private final Connection CON;
+
+    public Conexion(String server, String bd) throws ClassNotFoundException, SQLException {
         String protocolo = "jdbc:sqlserver://";
-        String serverIP = ""+server+";";
-        String baseDeDatos = "databaseName="+bd+";";
+        String serverIP = "" + server + ";";
+        String baseDeDatos = "databaseName=" + bd + ";";
         String seguridad = "integratedSecurity=true;";
-       
-        String url = protocolo+serverIP+baseDeDatos+seguridad;
+
+        String url = protocolo + serverIP + baseDeDatos + seguridad;
         System.out.println(url);
-        
-        con = DriverManager.getConnection(url);
-        
-        
+
+        CON = DriverManager.getConnection(url);
+
     }
-   
-    public void ejecutar(String query) throws SQLException{
+
+    public void ejecutar(String query) throws SQLException {
         System.out.println(query);
-        st = con.createStatement();
+
         System.out.println("por ejecutar query");
-        st.execute(query);
+        st = CON.createStatement();
+        st.executeUpdate(query);
         System.out.println("query ejecutado");
-        close();
+        st.close();
     }
-   
-    public ResultSet ejecutarSelect(String query) throws SQLException{
+
+    public ResultSet ejecutarSelect(String query) throws SQLException {
         System.out.println(query);
-       
-        st = con.createStatement();
+
+        st = CON.createStatement();
         rs = st.executeQuery(query);
         return rs;
     }
-   
-    public void close() throws SQLException{
+
+    public void close() throws SQLException {
         st.close();
     }
 }
